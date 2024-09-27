@@ -1,0 +1,28 @@
+{
+    "name": "anourvalar/laravel-pulse",
+    "description": "Additional cards for Laravel Pulse",
+    "keywords": ["laravel", "pulse", "anourvalar", "schedule", "http", "requests", "database", "hits", "mysql", "postgresql"],
+    "homepage": "https://github.com/AnourValar/laravel-pulse",
+    "license": "MIT",
+    "require": {
+        "php": "^8.1",
+        "laravel/pulse": "^1.2"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.6",
+        "phpstan/phpstan": "^1.10",
+        "friendsofphp/php-cs-fixer": "^3.26",
+        "squizlabs/php_codesniffer": "^3.7",
+        "psalm/plugin-laravel": "^2.8"
+    },
+    "autoload": {
+        "psr-4": {"AnourValar\\LaravelPulse\\": "src/"}
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AnourValar\\LaravelPulse\\Providers\\LaravelPulseServiceProvider"
+            ]
+        }
+    }
+}
