@@ -40,7 +40,11 @@
                                     </p>
                                 </x-pulse::td>
                                 <x-pulse::td numeric @class(['text-gray-700 dark:text-gray-300 font-bold', 'bg-red-50' => !$run->success])>
-                                    {{ $run->latest->ago(syntax: Carbon\CarbonInterface::DIFF_ABSOLUTE, short: true) }}
+                                    @if ($config['sample_rate'] < 1)
+                                        <span title="Sample rate: {{ $config['sample_rate'] }}">~{{ $run->latest->ago(syntax: Carbon\CarbonInterface::DIFF_ABSOLUTE, short: true) }}</span>
+                                    @else
+                                        {{ $run->latest->ago(syntax: Carbon\CarbonInterface::DIFF_ABSOLUTE, short: true) }}
+                                    @endif
                                 </x-pulse::td>
                                 <x-pulse::td numeric @class(['text-gray-700 dark:text-gray-300 font-bold', 'bg-red-50' => !$run->success])>
                                     @if ($config['sample_rate'] < 1)

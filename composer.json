@@ -1,7 +1,7 @@
 {
     "name": "anourvalar/laravel-pulse",
     "description": "Additional cards for Laravel Pulse",
-    "keywords": ["laravel", "pulse", "anourvalar", "schedule", "http", "requests", "database", "hits", "mysql", "postgresql"],
+    "keywords": ["laravel", "pulse", "anourvalar", "schedule", "http", "requests", "response", "database", "hits", "query", "mysql", "postgresql", "count", "time", "performance"],
     "homepage": "https://github.com/AnourValar/laravel-pulse",
     "license": "MIT",
     "require": {

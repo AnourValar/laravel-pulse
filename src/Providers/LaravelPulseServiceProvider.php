@@ -29,5 +29,6 @@ class LaravelPulseServiceProvider extends ServiceProvider
         \Livewire::component('anourvalar.pulse.schedule', \AnourValar\LaravelPulse\Livewire\Schedule::class);
         \Livewire::component('anourvalar.pulse.http-requests-count', \AnourValar\LaravelPulse\Livewire\HttpRequestsCount::class);
         \Livewire::component('anourvalar.pulse.http-requests-avg', \AnourValar\LaravelPulse\Livewire\HttpRequestsAvg::class);
+        \Livewire::component('anourvalar.pulse.database', \AnourValar\LaravelPulse\Livewire\Database::class);
     }
 }

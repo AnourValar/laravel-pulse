@@ -27,6 +27,7 @@ Add card to the vendor/pulse/dashboard.blade.php:
 <livewire:anourvalar.pulse.schedule cols="6" />
 ```
 
+
 ## HTTP Requests (count & response time)
 
 ![Demo](https://anour.ru/resources/pulse-http-requests.png)
@@ -46,4 +47,25 @@ Add cards to the vendor/pulse/dashboard.blade.php:
 ```html
 <livewire:anourvalar.pulse.http-requests-count cols="6" />
 <livewire:anourvalar.pulse.http-requests-avg cols="6" />
+```
+
+
+## Database (queries)
+
+![Demo](https://anour.ru/resources/pulse-database.png)
+
+Add recorder to the config/pulse.php:
+
+```php
+AnourValar\LaravelPulse\Recorders\DatabaseRecorder::class => [
+    'enabled' => env('PULSE_ANOURVALAR_DATABASE_ENABLED', true),
+    'sample_rate' => env('PULSE_ANOURVALAR_DATABASE_RATE', 1),
+    'ignore' => [],
+],
+```
+
+Add card to the vendor/pulse/dashboard.blade.php:
+
+```html
+<livewire:anourvalar.pulse.database cols="6" />
 ```
