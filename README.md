@@ -16,7 +16,7 @@ Add recorder to the config/pulse.php:
 ```php
 AnourValar\LaravelPulse\Recorders\ScheduleRecorder::class => [
     'enabled' => env('PULSE_ANOURVALAR_SCHEDULE_ENABLED', true),
-    'sample_rate' => env('PULSE_ANOURVALAR_SCHEDULE_RATE', 1),
+    'sample_rate' => env('PULSE_ANOURVALAR_SCHEDULE_SAMPLE_RATE', 1),
     'ignore' => [],
 ],
 ```
@@ -37,7 +37,7 @@ Add recorder to the config/pulse.php:
 ```php
 AnourValar\LaravelPulse\Recorders\HttpRequestsRecorder::class => [
     'enabled' => env('PULSE_ANOURVALAR_HTTP_REQUESTS_ENABLED', true),
-    'sample_rate' => env('PULSE_ANOURVALAR_HTTP_REQUESTS_RATE', 1),
+    'sample_rate' => env('PULSE_ANOURVALAR_HTTP_REQUESTS_SAMPLE_RATE', 1),
     'ignore' => ['#/admin/#', '#/livewire/#'],
 ],
 ```
@@ -59,7 +59,7 @@ Add recorder to the config/pulse.php:
 ```php
 AnourValar\LaravelPulse\Recorders\DatabaseRecorder::class => [
     'enabled' => env('PULSE_ANOURVALAR_DATABASE_ENABLED', true),
-    'sample_rate' => env('PULSE_ANOURVALAR_DATABASE_RATE', 1),
+    'sample_rate' => env('PULSE_ANOURVALAR_DATABASE_SAMPLE_RATE', 1),
     'ignore' => [],
 ],
 ```
