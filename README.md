@@ -69,3 +69,23 @@ Add card to the vendor/pulse/dashboard.blade.php:
 ```html
 <livewire:anourvalar.pulse.database cols="6" />
 ```
+
+
+## Ping (Response time & status code)
+
+![Demo](https://anour.ru/resources/pulse-ping.png)
+
+Add recorder to the config/pulse.php:
+
+```php
+AnourValar\LaravelPulse\Recorders\PingRecorder::class => [
+    'enabled' => env('PULSE_ANOURVALAR_PING_ENABLED', true),
+    'urls' => ['/'],
+],
+```
+
+Add card to the vendor/pulse/dashboard.blade.php:
+
+```html
+<livewire:anourvalar.pulse.ping cols="6" />
+```
