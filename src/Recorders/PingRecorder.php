@@ -68,6 +68,9 @@ class PingRecorder
 
         $httpCode = (int) $curlGetInfo['http_code']; // 0 - if no response,
         $responseTimeMs = (int) round(($curlGetInfo['total_time'] - $curlGetInfo['namelookup_time'])  * 1000);
+        if ($responseTimeMs === 0) {
+            $responseTimeMs = 1;
+        }
 
         return [$httpCode == 200 ? 'success' : 'failure', $responseTimeMs];
     }
