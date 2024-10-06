@@ -13,6 +13,7 @@
         "laravel/pulse": "^1.2"
     },
     "require-dev": {
+        "anourvalar/http-client": "^1.10",
         "orchestra/testbench": "^8.6",
         "phpstan/phpstan": "^1.10",
         "friendsofphp/php-cs-fixer": "^3.26",
