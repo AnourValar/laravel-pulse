@@ -54,14 +54,21 @@ class HttpRequestsRecorder
                 return;
             }
 
-            $duration = (int) $startedAt->diffInMilliseconds();
-
             $this->pulse->record(
                 type: 'anourvalar_http_requests',
                 key: (string) $response->getStatusCode(),
-                value: $duration,
+                value: (int) round($startedAt->diffInMilliseconds()),
                 timestamp: $startedAt,
             )->avg()->count()->onlyBuckets();
+
+            if ($queued = $request->header('X-Request-Start')) {
+                $this->pulse->record(
+                    type: 'anourvalar_http_requests_latency',
+                    key: (string) $response->getStatusCode(),
+                    value: (int) round($startedAt->getTimestampMs() - ($queued * 1000)),
+                    timestamp: $startedAt,
+                )->avg()->onlyBuckets();
+            }
         });
     }
 }

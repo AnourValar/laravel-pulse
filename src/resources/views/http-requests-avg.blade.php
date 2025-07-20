@@ -14,6 +14,10 @@
                     <div class="h-0.5 w-3 rounded-full bg-[#9333ea]"></div>
                     Response time (average, ms)
                 </div>
+                <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 font-medium">
+                    <div class="h-0.5 w-3 rounded-full bg-[#e11d48]" style="background-color: #31e11d;"></div>
+                    Worker latency (average, ms)
+                </div>
             </div>
         </x-slot:actions>
     </x-pulse::card-header>
@@ -29,15 +33,23 @@
                             {{ $code }} <small class="text-xs text-gray-400 dark:text-gray-600">status</small>
                         </h3>
                         @php
-                            $highest = $readings->flatten()->max();
+                            $highest0 = $readings['anourvalar_http_requests']->max();
+                            $highest1 = $readings['anourvalar_http_requests_latency']->max();
                         @endphp
 
                         <div class="mt-3 relative">
                             <div class="absolute -left-px -top-2 max-w-fit h-4 flex items-center px-1 text-xs leading-none text-white font-bold bg-purple-500 rounded after:[--triangle-size:4px] after:border-l-purple-500 after:absolute after:right-[calc(-1*var(--triangle-size))] after:top-[calc(50%-var(--triangle-size))] after:border-t-[length:var(--triangle-size)] after:border-b-[length:var(--triangle-size)] after:border-l-[length:var(--triangle-size)] after:border-transparent">
                                 @if ($config['sample_rate'] < 1)
-                                    <span title="Sample rate: {{ $config['sample_rate'] }}, Raw value: {{ number_format($highest) }}">~{{ number_format($highest) }} ms</span>
+                                    <span title="Sample rate: {{ $config['sample_rate'] }}, Raw value: {{ number_format($highest0) }}">~{{ number_format($highest0) }} ms</span>
                                 @else
-                                    {{ number_format($highest) }} ms
+                                    {{ number_format($highest0) }} ms
+                                @endif
+                            </div>
+                           <div class="mt-3 absolute -left-px -top-4 max-w-fit h-4 flex items-center px-1 text-xs leading-none text-white font-bold bg-green-500 rounded after:[--triangle-size:4px] after:border-l-green-500 after:absolute after:right-[calc(-1*var(--triangle-size))] after:top-[calc(50%-var(--triangle-size))] after:border-t-[length:var(--triangle-size)] after:border-b-[length:var(--triangle-size)] after:border-l-[length:var(--triangle-size)] after:border-transparent">
+                                @if ($config['sample_rate'] < 1)
+                                    <span title="Sample rate: {{ $config['sample_rate'] }}, Raw value: {{ number_format($highest1) }}">~{{ number_format($highest1) }} ms</span>
+                                @else
+                                    {{ number_format($highest1) }} ms
                                 @endif
                             </div>
 
@@ -82,6 +94,12 @@ Alpine.data('requestChart', (config) => ({
                             data: this.scale(config.readings.anourvalar_http_requests),
                             order: 0,
                         },
+                        {
+                          label: 'Worker latency (average, ms)',
+                          borderColor: '#31e11d',
+                          data: this.scale(config.readings.anourvalar_http_requests_latency),
+                          order: 1,
+                      },
                     ],
                 },
                 options: {
@@ -149,6 +167,7 @@ Alpine.data('requestChart', (config) => ({
             chart.data.labels = this.labels(requests[config.code])
             chart.options.scales.y.max = this.highest(requests[config.code])
             chart.data.datasets[0].data = this.scale(requests[config.code].anourvalar_http_requests)
+            chart.data.datasets[1].data = this.scale(requests[config.code].anourvalar_http_requests_latency)
             chart.update()
         })
     },

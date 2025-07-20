@@ -84,6 +84,13 @@ AnourValar\LaravelPulse\Recorders\PingRecorder::class => [
 ],
 ```
 
+To record the latency between the web server and the PHP worker, configure your web server to add a timestamp header:
+
+```
+fastcgi_param HTTP_X_REQUEST_START $msec; # fpm
+proxy_set_header X-Request-Start $msec; # octane
+```
+
 Add card to the vendor/pulse/dashboard.blade.php:
 
 ```html

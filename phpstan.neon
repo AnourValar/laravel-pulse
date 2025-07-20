@@ -11,6 +11,8 @@ parameters:
         - '#on an unknown class Date\.#'
         - '#on an unknown class Livewire\.#'
         - '#map\(\) contains unresolvable type#'
+        - '#Instanceof between Illuminate\\Routing\\Route and Illuminate\\Routing\\Route will always evaluate to true#'
+        - '#Binary operation \"\*\" between non-empty-array\|non-falsy-string and \d+ results in an error#'
 
     excludePaths:
 

@@ -14,7 +14,7 @@ class HttpRequestsAvg extends Card
      */
     public function render()
     {
-        [$requests, $time, $runAt] = $this->remember(fn () => $this->graph(['anourvalar_http_requests'], 'avg'));
+        [$requests, $time, $runAt] = $this->remember(fn () => $this->graph(['anourvalar_http_requests', 'anourvalar_http_requests_latency'], 'avg'));
 
         if (Livewire::isLivewireRequest()) {
             $this->dispatch('requests-avg-chart-update', requests: $requests);
