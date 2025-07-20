@@ -49,6 +49,13 @@ Add cards to the vendor/pulse/dashboard.blade.php:
 <livewire:anourvalar.pulse.http-requests-avg cols="6" />
 ```
 
+Optionally: To record the latency between the web server and the PHP worker, configure your web server to add a timestamp header:
+
+```
+fastcgi_param HTTP_X_REQUEST_START $msec; # fpm
+proxy_set_header X-Request-Start $msec; # octane
+```
+
 
 ## Database (queries)
 
@@ -82,13 +89,6 @@ AnourValar\LaravelPulse\Recorders\PingRecorder::class => [
     'enabled' => env('PULSE_ANOURVALAR_PING_ENABLED', true),
     'urls' => ['/'],
 ],
-```
-
-To record the latency between the web server and the PHP worker, configure your web server to add a timestamp header:
-
-```
-fastcgi_param HTTP_X_REQUEST_START $msec; # fpm
-proxy_set_header X-Request-Start $msec; # octane
 ```
 
 Add card to the vendor/pulse/dashboard.blade.php:
