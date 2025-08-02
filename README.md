@@ -67,7 +67,7 @@ Add recorder to the config/pulse.php:
 AnourValar\LaravelPulse\Recorders\DatabaseRecorder::class => [
     'enabled' => env('PULSE_ANOURVALAR_DATABASE_ENABLED', true),
     'sample_rate' => env('PULSE_ANOURVALAR_DATABASE_SAMPLE_RATE', 1),
-    'ignore' => [],
+    'ignore' => ['#pulse_#'],
 ],
 ```
 
