@@ -9,7 +9,7 @@ composer require anourvalar/laravel-pulse
 
 ## Schedule (cron)
 
-![Demo](https://anour.ru/resources/pulse-schedule.png)
+![Demo](./images/pulse-schedule.png)
 
 Add recorder to the config/pulse.php:
 
@@ -30,7 +30,7 @@ Add card to the vendor/pulse/dashboard.blade.php:
 
 ## HTTP Requests (count & response time)
 
-![Demo](https://anour.ru/resources/pulse-http-requests.png)
+![Demo](./images/pulse-http-requests.png)
 
 Add recorder to the config/pulse.php:
 
@@ -59,7 +59,7 @@ proxy_set_header X-Request-Start $msec; # octane
 
 ## Database (queries)
 
-![Demo](https://anour.ru/resources/pulse-database.png)
+![Demo](./images/pulse-database.png)
 
 Add recorder to the config/pulse.php:
 
@@ -80,7 +80,7 @@ Add card to the vendor/pulse/dashboard.blade.php:
 
 ## Ping (Response time & status code)
 
-![Demo](https://anour.ru/resources/pulse-ping.png)
+![Demo](./images/pulse-ping.png)
 
 Add recorder to the config/pulse.php:
 
@@ -95,4 +95,24 @@ Add card to the vendor/pulse/dashboard.blade.php:
 
 ```html
 <livewire:anourvalar.pulse.ping cols="6" />
+```
+
+
+## FPM (Workers count)
+
+![Demo](./images/pulse-fpm.png)
+
+Add recorder to the config/pulse.php:
+
+```php
+AnourValar\LaravelPulse\Recorders\FpmRecorder::class => [
+    'enabled' => env('PULSE_ANOURVALAR_FPM_ENABLED', true),
+    'sample_rate' => env('PULSE_ANOURVALAR_FPM_SAMPLE_RATE', 1),
+],
+```
+
+Add card to the vendor/pulse/dashboard.blade.php:
+
+```html
+<livewire:anourvalar.pulse.fpm cols="6" />
 ```
