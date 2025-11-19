@@ -33,8 +33,8 @@
                             {{ $node }}
                         </h3>
                         @php
-                            $highest0 = $readings['anourvalar_fpm_total_processes']->max();
-                            $highest1 = $readings['anourvalar_fpm_idle_processes']->max();
+                            $highest0 = $readings['anourvalar_fpm_total']->max();
+                            $highest1 = $readings['anourvalar_fpm_idle']->max();
                         @endphp
 
                         <div class="mt-3 relative">
@@ -91,13 +91,13 @@ Alpine.data('requestChart', (config) => ({
                         {
                             label: 'Total',
                             borderColor: '#9333ea',
-                            data: this.scale(config.readings.anourvalar_fpm_total_processes),
+                            data: this.scale(config.readings.anourvalar_fpm_total),
                             order: 0,
                         },
                         {
                           label: 'Idle',
                           borderColor: '#31e11d',
-                          data: this.scale(config.readings.anourvalar_fpm_idle_processes),
+                          data: this.scale(config.readings.anourvalar_fpm_idle),
                           order: 1,
                       },
                     ],
@@ -166,13 +166,13 @@ Alpine.data('requestChart', (config) => ({
 
             chart.data.labels = this.labels(fpm[config.node])
             chart.options.scales.y.max = this.highest(fpm[config.node])
-            chart.data.datasets[0].data = this.scale(fpm[config.node].anourvalar_fpm_total_processes)
-            chart.data.datasets[1].data = this.scale(fpm[config.node].anourvalar_fpm_idle_processes)
+            chart.data.datasets[0].data = this.scale(fpm[config.node].anourvalar_fpm_total)
+            chart.data.datasets[1].data = this.scale(fpm[config.node].anourvalar_fpm_idle)
             chart.update()
         })
     },
     labels(readings) {
-        return Object.keys(readings.anourvalar_fpm_total_processes)
+        return Object.keys(readings.anourvalar_fpm_total)
     },
     scale(data) {
         return Object.values(data).map(value => value * (1 / 1 ))

@@ -52,14 +52,14 @@ class FpmRecorder
             $name = config('pulse.recorders.' . \Laravel\Pulse\Recorders\Servers::class . '.server_name');
 
             $this->pulse->record(
-                type: 'anourvalar_fpm_total_processes',
+                type: 'anourvalar_fpm_total',
                 key: $name,
                 value: $status['total-processes'],
                 timestamp: $startedAt,
             )->max()->onlyBuckets();
 
             $this->pulse->record(
-                type: 'anourvalar_fpm_idle_processes',
+                type: 'anourvalar_fpm_idle',
                 key: $name,
                 value: $status['idle-processes'],
                 timestamp: $startedAt,
