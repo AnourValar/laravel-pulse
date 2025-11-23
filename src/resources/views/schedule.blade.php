@@ -23,7 +23,6 @@
                     <x-pulse::thead>
                         <tr>
                             <x-pulse::th>Command</x-pulse::th>
-                            <x-pulse::th class="text-right">Longest</x-pulse::th>
                             <x-pulse::th class="text-right">Latest</x-pulse::th>
                             <x-pulse::th class="text-right">Count</x-pulse::th>
                         </tr>
@@ -39,13 +38,6 @@
                                     <p class="mt-1 text-xs text-gray-500 dark:text-gray-400 truncate" title="{{ $run->expression }}">
                                         {{ $run->expression }}
                                     </p>
-                                </x-pulse::td>
-                                <x-pulse::td numeric @class(['text-gray-700 dark:text-gray-300 font-bold', 'bg-red-50' => !$run->success || $run->duration > 1000])>
-                                    @if ($config['sample_rate'] < 1)
-                                        <span title="Sample rate: {{ $config['sample_rate'] }}">~{{ isset($run->duration) ? number_format($run->duration) . ' ms' : '-' }}</span>
-                                    @else
-                                        {{ isset($run->duration) ? number_format($run->duration) . ' ms' : '-' }}
-                                    @endif
                                 </x-pulse::td>
                                 <x-pulse::td numeric @class(['text-gray-700 dark:text-gray-300 font-bold', 'bg-red-50' => !$run->success])>
                                     @if ($config['sample_rate'] < 1)

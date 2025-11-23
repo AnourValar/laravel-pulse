@@ -22,27 +22,14 @@ class Schedule extends Card
                 [$expression, $command, $success] = json_decode($row->key, flags: JSON_THROW_ON_ERROR);
 
                 return (object) [
-                    'key' => $row->key,
                     'expression' => $expression,
                     'command' => $command,
                     'success' => $success,
                     'latest' => \Date::createFromTimestamp($row->max),
                     'count' => $row->count,
                 ];
-            }),
-            'count'
+            })
         );
-
-        [$runs2] = $this->remember(
-            fn () => $this->aggregate('anourvalar_schedule_duration', ['max']),
-            'duration'
-        );
-
-        $runs2 = $runs2->pluck(null, 'key');
-        foreach ($runs as &$run) {
-            $run->duration = ($runs2[$run->key] ?? null)?->max;
-        }
-        unset($run);
 
         return view('anourvalar.pulse::schedule', [
             'runs' => $runs,

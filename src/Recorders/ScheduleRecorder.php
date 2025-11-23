@@ -60,8 +60,7 @@ class ScheduleRecorder
             $data = [
                 $event->task->expression, // 20 11 * * *
                 $command, // health:queue-check-heartbeat
-                //$event->task->nextRunDate(), // 2024-09-25 11:00:00
-                ($event->task->exitCode === 0 && ! $event instanceof ScheduledTaskFailed) ? true : false,
+                ($event->task->exitCode === 0 && ! $event instanceof ScheduledTaskFailed) ? true : false, // is success
             ];
 
             $this->pulse->record(
@@ -70,15 +69,6 @@ class ScheduleRecorder
                 timestamp: $timestamp,
                 value: $timestamp,
             )->max()->count();
-
-            if ($event instanceof ScheduledTaskFinished) {
-                $this->pulse->record(
-                    type: 'anourvalar_schedule_duration',
-                    key: json_encode($data, flags: JSON_THROW_ON_ERROR),
-                    timestamp: $timestamp,
-                    value: (int) ($event->runtime * 1000),
-                )->max();
-            }
         });
     }
 }

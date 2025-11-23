@@ -116,3 +116,25 @@ Add card to the vendor/pulse/dashboard.blade.php:
 ```html
 <livewire:anourvalar.pulse.fpm cols="6" />
 ```
+
+
+## Slow Commands
+
+![Demo](./images/pulse-slow-commands.png)
+
+Add recorder to the config/pulse.php:
+
+```php
+AnourValar\LaravelPulse\Recorders\SlowCommandsRecorder::class => [
+    'enabled' => env('PULSE_ANOURVALAR_SLOW_COMMANDS_ENABLED', true),
+    'sample_rate' => env('PULSE_ANOURVALAR_SLOW_COMMANDS_SAMPLE_RATE', 1),
+    'threshold' => env('PULSE_ANOURVALAR_SLOW_COMMANDS_THRESHOLD', 1000),
+    'ignore' => ['#^tinker#', '#^schedule\:run#', '#^schedule\:finish#'],
+],
+```
+
+Add card to the vendor/pulse/dashboard.blade.php:
+
+```html
+<livewire:anourvalar.pulse.slow-commands cols="6" />
+```

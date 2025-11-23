@@ -33,5 +33,6 @@ class LaravelPulseServiceProvider extends ServiceProvider
         \Livewire::component('anourvalar.pulse.database', \AnourValar\LaravelPulse\Livewire\Database::class);
         \Livewire::component('anourvalar.pulse.ping', \AnourValar\LaravelPulse\Livewire\Ping::class);
         \Livewire::component('anourvalar.pulse.fpm', \AnourValar\LaravelPulse\Livewire\Fpm::class);
+        \Livewire::component('anourvalar.pulse.slow-commands', \AnourValar\LaravelPulse\Livewire\SlowCommands::class);
     }
 }
