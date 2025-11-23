@@ -55,7 +55,7 @@ class ScheduleRecorder
 
             $command = explode(' > ', $command)[0];
             $command = explode("'artisan'", $command);
-            $command = array_pop($command);
+            $command = trim(array_pop($command));
 
             $data = [
                 $event->task->expression, // 20 11 * * *
@@ -71,12 +71,14 @@ class ScheduleRecorder
                 value: $timestamp,
             )->max()->count();
 
-            $this->pulse->record(
-                type: 'anourvalar_schedule_duration',
-                key: json_encode($data, flags: JSON_THROW_ON_ERROR),
-                timestamp: $timestamp,
-                value: $event instanceof ScheduledTaskFinished ? (int) ($event->runtime * 1000) : null,
-            )->max();
+            if ($event instanceof ScheduledTaskFinished) {
+                $this->pulse->record(
+                    type: 'anourvalar_schedule_duration',
+                    key: json_encode($data, flags: JSON_THROW_ON_ERROR),
+                    timestamp: $timestamp,
+                    value: (int) ($event->runtime * 1000),
+                )->max();
+            }
         });
     }
 }
