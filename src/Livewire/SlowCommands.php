@@ -20,7 +20,7 @@ class SlowCommands extends Card
      *
      * @var 'slowest'|'count'
      */
-    #[Url(as: 'anourvalar-slow-commands')]
+    #[Url(as: 'slow-commands')]
     public string $orderBy = 'slowest';
 
     /**
@@ -47,7 +47,7 @@ class SlowCommands extends Card
             $this->orderBy,
         );
 
-        return view('anourvalar.pulse::anourvalar-slow-commands', [
+        return view('anourvalar.pulse::slow-commands', [
             'time' => $time,
             'runAt' => $runAt,
             'config' => \Config::get('pulse.recorders.'.\AnourValar\LaravelPulse\Recorders\SlowCommandsRecorder::class),
