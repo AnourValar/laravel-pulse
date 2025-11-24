@@ -129,7 +129,7 @@ AnourValar\LaravelPulse\Recorders\SlowCommandsRecorder::class => [
     'enabled' => env('PULSE_ANOURVALAR_SLOW_COMMANDS_ENABLED', true),
     'sample_rate' => env('PULSE_ANOURVALAR_SLOW_COMMANDS_SAMPLE_RATE', 1),
     'threshold' => env('PULSE_ANOURVALAR_SLOW_COMMANDS_THRESHOLD', 1000),
-    'ignore' => ['#^tinker#', '#^schedule\:run#', '#^schedule\:finish#'],
+    'ignore' => ['#^tinker#', '#^schedule\:#', '#^horizon\:#', '#invoke\-serialized\-closure#'],
 ],
 ```
 
