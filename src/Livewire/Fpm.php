@@ -14,7 +14,7 @@ class Fpm extends Card
      */
     public function render()
     {
-        [$fpm, $time, $runAt] = $this->remember(fn () => $this->graph(['anourvalar_fpm_total', 'anourvalar_fpm_idle'], 'max'));
+        [$fpm, $time, $runAt] = $this->remember(fn () => $this->graph(['anourvalar_fpm_total', 'anourvalar_fpm_idle'], 'avg'));
 
         if (Livewire::isLivewireRequest()) {
             $this->dispatch('fpm-chart-update', fpm: $fpm);

@@ -56,14 +56,14 @@ class FpmRecorder
                 key: $name,
                 value: $status['total-processes'],
                 timestamp: $startedAt,
-            )->max()->onlyBuckets();
+            )->avg()->onlyBuckets();
 
             $this->pulse->record(
                 type: 'anourvalar_fpm_idle',
                 key: $name,
                 value: $status['idle-processes'],
                 timestamp: $startedAt,
-            )->max()->onlyBuckets();
+            )->avg()->onlyBuckets();
         });
     }
 }

@@ -12,11 +12,11 @@
             <div class="flex flex-wrap gap-4">
                 <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 font-medium">
                     <div class="h-0.5 w-3 rounded-full bg-[#9333ea]"></div>
-                    Total
+                    Total (average)
                 </div>
                 <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 font-medium">
                     <div class="h-0.5 w-3 rounded-full bg-[#e11d48]" style="background-color: #31e11d;"></div>
-                    Idle
+                    Idle (average)
                 </div>
             </div>
         </x-slot:actions>
@@ -28,7 +28,7 @@
         @else
             <div class="grid gap-3 mx-px mb-px">
                 @foreach ($fpm as $node => $readings)
-                    <div wire:key="max-{{ $node }}">
+                    <div wire:key="avg-{{ $node }}">
                         <h3 class="font-bold text-gray-700 dark:text-gray-300">
                             {{ $node }}
                         </h3>
@@ -89,13 +89,13 @@ Alpine.data('requestChart', (config) => ({
                     labels: this.labels(config.readings),
                     datasets: [
                         {
-                            label: 'Total',
+                            label: 'Total (average)',
                             borderColor: '#9333ea',
                             data: this.scale(config.readings.anourvalar_fpm_total),
                             order: 0,
                         },
                         {
-                          label: 'Idle',
+                          label: 'Idle (average)',
                           borderColor: '#31e11d',
                           data: this.scale(config.readings.anourvalar_fpm_idle),
                           order: 1,
