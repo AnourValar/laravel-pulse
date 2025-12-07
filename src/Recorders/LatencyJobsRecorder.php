@@ -49,7 +49,7 @@ class LatencyJobsRecorder
             $duration = ($startedAt->getTimestampMs() / 1000)
                 - $event->job->payload()['pushedAt']
                 - unserialize($event->job->payload()['data']['command'])->delay;
-            $duration = $duration * 1000;
+            $duration = round($duration * 1000);
 
             if (! $this->shouldSample() || $this->shouldIgnore($command) || $this->underThreshold($duration, $command)) {
                 return;
