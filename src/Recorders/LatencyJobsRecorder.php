@@ -46,10 +46,15 @@ class LatencyJobsRecorder
                 return; // retry
             }
 
-            $duration = ($startedAt->getTimestampMs() / 1000)
-                - $event->job->payload()['pushedAt']
-                - unserialize($event->job->payload()['data']['command'])->delay;
-            $duration = round($duration * 1000);
+            $payload = unserialize($event->job->payload()['data']['command']);
+            if ($payload->delay instanceof \Carbon\CarbonInterface) {
+                $scheduledAt = ($payload->delay->getTimestampMs() / 1000);
+            } else {
+                $scheduledAt = $event->job->payload()['pushedAt'] + $payload->delay;
+            }
+
+            $duration = ($startedAt->getTimestampMs() / 1000) - $scheduledAt;
+            $duration = (int) round($duration * 1000);
 
             if (! $this->shouldSample() || $this->shouldIgnore($command) || $this->underThreshold($duration, $command)) {
                 return;
