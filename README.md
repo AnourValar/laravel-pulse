@@ -138,3 +138,25 @@ Add card to the vendor/pulse/dashboard.blade.php:
 ```html
 <livewire:anourvalar.pulse.slow-commands cols="6" />
 ```
+
+
+## Latency Jobs
+
+![Demo](./images/pulse-latency-jobs.png)
+
+Add recorder to the config/pulse.php:
+
+```php
+AnourValar\LaravelPulse\Recorders\LatencyJobsRecorder::class => [
+    'enabled' => env('PULSE_ANOURVALAR_LATENCY_JOBS_ENABLED', true),
+    'sample_rate' => env('PULSE_ANOURVALAR_LATENCY_JOBS_SAMPLE_RATE', 1),
+    'threshold' => env('PULSE_ANOURVALAR_LATENCY_JOBS_THRESHOLD', 10000),
+    'ignore' => ['#pulse#'],
+],
+```
+
+Add card to the vendor/pulse/dashboard.blade.php:
+
+```html
+<livewire:anourvalar.pulse.latency-jobs cols="6" />
+```
