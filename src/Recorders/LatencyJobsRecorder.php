@@ -50,7 +50,8 @@ class LatencyJobsRecorder
             if ($payload->delay instanceof \Carbon\CarbonInterface) {
                 $scheduledAt = ($payload->delay->getTimestampMs() / 1000);
             } else {
-                $scheduledAt = $event->job->payload()['createdAt'] + $payload->delay;
+                $scheduledAt = $event->job->payload()['pushedAt'] ?? $event->job->payload()['createdAt']; // Horizon
+                $scheduledAt += $payload->delay;
             }
 
             $duration = ($startedAt->getTimestampMs() / 1000) - $scheduledAt;
