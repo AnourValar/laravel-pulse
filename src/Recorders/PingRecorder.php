@@ -64,7 +64,6 @@ class PingRecorder
         curl_exec($ch);
 
         $curlGetInfo = curl_getinfo($ch);
-        curl_close($ch);
 
         $httpCode = (int) $curlGetInfo['http_code']; // 0 - if no response,
         $responseTimeMs = (int) round(($curlGetInfo['total_time'] - $curlGetInfo['namelookup_time'])  * 1000);
