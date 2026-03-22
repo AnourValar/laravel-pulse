@@ -10,7 +10,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "laravel/pulse": "^1.4"
+        "laravel/pulse": "^1.7"
     },
     "require-dev": {
         "anourvalar/http-client": "^1.10",
