@@ -20,7 +20,6 @@ class LaravelPulseServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      *
      * @return void
-     * @psalm-suppress UndefinedClass
      */
     public function boot()
     {

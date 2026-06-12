@@ -40,7 +40,6 @@ class HttpRequestsRecorder
 
     /**
      * Record the request.
-     * @psalm-suppress UnusedVariable
      */
     public function record(Carbon $startedAt, Request $request, Response $response): void
     {
